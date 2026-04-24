@@ -1,10 +1,16 @@
 const mongoose = require('mongoose');
 
 const adminSchema = new mongoose.Schema({
-  username: {
+  fullName: {
     type: String,
     required: true,
+    trim: true
+  },
+  username: {
+    type: String,
+    required: false,
     unique: true,
+    sparse: true, // Allows null/undefined values to be unique
     trim: true
   },
   email: {

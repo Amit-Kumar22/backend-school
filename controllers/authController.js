@@ -6,22 +6,22 @@ const Admin = require('../models/Admin');
 // @route   POST /api/auth/register
 exports.register = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { fullName, email, password } = req.body;
 
     // Validate input
-    if (!username || !email || !password) {
+    if (!fullName || !email || !password) {
       return res.status(400).json({ 
         success: false, 
-        message: 'Please provide all required fields' 
+        message: 'Please provide all required fields (fullName, email, password)' 
       });
     }
 
     // Check if admin exists
-    const existingAdmin = await Admin.findOne({ $or: [{ email }, { username }] });
+    const existingAdmin = await Admin.findOne({ email });
     if (existingAdmin) {
       return res.status(400).json({ 
         success: false, 
-        message: 'Admin with this email or username already exists' 
+        message: 'Admin with this email already exists' 
       });
     }
 
@@ -31,7 +31,7 @@ exports.register = async (req, res) => {
 
     // Create admin
     const admin = await Admin.create({
-      username,
+      fullName,
       email,
       password: hashedPassword
     });
@@ -50,7 +50,7 @@ exports.register = async (req, res) => {
         token,
         admin: {
           id: admin._id,
-          username: admin.username,
+          fullName: admin.fullName,
           email: admin.email,
           role: admin.role
         }
@@ -111,7 +111,7 @@ exports.login = async (req, res) => {
         token,
         admin: {
           id: admin._id,
-          username: admin.username,
+          fullName: admin.fullName,
           email: admin.email,
           role: admin.role
         }
