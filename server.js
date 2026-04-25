@@ -25,6 +25,9 @@ app.use('/api/gallery', require('./routes/gallery'));
 app.use('/api/contact', require('./routes/contact'));
 app.use('/api/notices', require('./routes/notices'));
 app.use('/api/services', require('./routes/services'));
+app.use('/api/school-timing', require('./routes/schoolTiming'));
+app.use('/api/important-notices', require('./routes/importantNotices'));
+app.use('/api/facilities', require('./routes/facilities'));
 
 // Health check
 app.get('/api/health', (req, res) => {

@@ -11,7 +11,9 @@
     "prod": "NODE_ENV=production node server.js",
     "check": "node --check server.js && echo '✅ All files are valid'",
     "check:prod": "node check-production.js",
-    "test:connection": "node -e \"require('dotenv').config(); console.log('MongoDB URI:', process.env.MONGODB_URI ? '✅ Set' : '❌ Not set'); console.log('PORT:', process.env.PORT || 5000);\""
+    "test:connection": "node -e \"require('dotenv').config(); console.log('MongoDB URI:', process.env.MONGODB_URI ? '✅ Set' : '❌ Not set'); console.log('PORT:', process.env.PORT || 5000);\"",
+    "seed:important-notices": "node seed-important-notices.js",
+    "seed:facilities": "node seed-facilities.js"
   },
   "keywords": ["school", "api", "express"],
   "author": "",
